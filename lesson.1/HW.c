@@ -53,51 +53,62 @@ void shakerSort(int* arr, int len) {
 	int min = 0;
 	int max = len;
 	int i = 0;
-	int k = 0;
+	int k;
 	while (max > min) {
+		k = 0;
 		while (i < max - 1) {
+			count++;
 			if (arr[i] > arr[i + 1]) {
 				swap(&arr[i], &arr[i + 1]);
+				k = 1;
 			}
 			i++;
 		}
-		printArr(arr, len);
+		if (k == 0) break;
 		max = i;
-		printf("\nmax: %d\n", max);
+		k = 0;
 		while (i > min) {
+			count++;
 			if (arr[i] < arr[i - 1]) {
 				swap(&arr[i], &arr[i - 1]);
+				k = 1;
 			}
 			i--;
 		}
-		printArr(arr, len);
+		if (k == 0) break;
 		min = i + 1;
-		printf("\nmin: %d\n", min);
 	}
 }
 
 int main() {
 	srand(time(NULL));
 
-	int SIZE = 7;
-	int arr[7];
+	int SIZE = 30;
+	int arr[30];
+
 	fillArr(arr, SIZE);
+	printf("before:\n");
 	printArr(arr, SIZE);
 	bSort(arr, SIZE);
+	printf("after:\n");
 	printArr(arr, SIZE);
 	printf("%d\n", count);
 
 	fillArr(arr, SIZE);
+	printf("before:\n");
 	printArr(arr, SIZE);
 	count = 0;
 	bSort2(arr, SIZE);
+	printf("after:\n");
 	printArr(arr, SIZE);
 	printf("%d\n", count);
 
 	fillArr(arr, SIZE);
+	printf("before:\n");
 	printArr(arr, SIZE);
 	count = 0;
 	shakerSort(arr, SIZE);
+	printf("after:\n");
 	printArr(arr, SIZE);
 	printf("%d\n", count);
 
